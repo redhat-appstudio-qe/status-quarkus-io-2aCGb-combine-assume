@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: statusquarkusio-vyf1
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: statusquarkusio-vyf1
+    app.kubernetes.io/part-of: status-quarkus-io
+  name: statusquarkusio-vyf1
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: java-quarkus-app
+      app.kubernetes.io/instance: statusquarkusio-vyf1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: java-quarkus-app
+        app.kubernetes.io/instance: statusquarkusio-vyf1
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio-qe/rhtap-demo-oans-tenant/status-quarkus-io/statusquarkusio-vyf1@sha256:364985549ff8d6c2dcc1de1d7d738eb36d331ca761946e22797a007aee924bcb
+        name: my-java-quarkus
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+        - containerPort: 9081
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+status: {}
